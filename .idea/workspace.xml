@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cd1aa1-7cdd-4698-a3ea-74e889b4eab0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/book/read.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/book/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read_single.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Book.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567064908286</updated>
-      <workItem from="1567064910104" duration="6592000" />
+      <workItem from="1567064910104" duration="8386000" />
     </task>
     <servers />
   </component>

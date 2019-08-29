@@ -5,7 +5,7 @@
     private $table = 'NOTICE';
 
     // Post Properties
-    public $id;
+    public $DOC_ID;
     public $category_id;
     public $category_name;
     public $title;
