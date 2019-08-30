@@ -2,7 +2,7 @@
   class Reader {
     // DB Stuff
     private $conn;
-    private $table = 'categories';
+    private $table = 'LECTEUR';
 
     // Properties
     public $id;
@@ -14,37 +14,13 @@
       $this->conn = $db;
     }
 
-    // Get categories
-    public function read() {
-      // Create query
-      $query = 'SELECT
-        id,
-        name,
-        created_at
-      FROM
-        ' . $this->table . '
-      ORDER BY
-        created_at DESC';
-
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-
-      // Execute query
-      $stmt->execute();
-
-      return $stmt;
-    }
-
-    // Get Single Category
+    // Get Single Reader
   public function read_single(){
     // Create query
-    $query = 'SELECT
-          id,
-          name
+    $query = 'SELECT TOP 1 *
         FROM
           ' . $this->table . '
-      WHERE id = ?
-      LIMIT 0,1';
+      WHERE LEC_ID = ?';
 
       //Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -58,8 +34,8 @@
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
       // set properties
-      $this->id = $row['id'];
-      $this->name = $row['name'];
+      $this->id = $row['LEC_ID'];
+      $this->name = $row['LEC_NOM'];
   }
 
 

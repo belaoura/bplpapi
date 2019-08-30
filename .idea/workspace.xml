@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cd1aa1-7cdd-4698-a3ea-74e889b4eab0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajaxCall.html" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxCall.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajaxCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxCall.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read_single.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/reader/read.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Reader.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Reader.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +31,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -51,6 +56,8 @@
       <option name="presentableId" value="Default" />
       <updated>1567064908286</updated>
       <workItem from="1567064910104" duration="8386000" />
+      <workItem from="1567097384730" duration="936000" />
+      <workItem from="1567098413102" duration="6957000" />
     </task>
     <servers />
   </component>
@@ -62,7 +69,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
