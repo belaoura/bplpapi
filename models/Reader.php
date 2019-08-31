@@ -1,42 +1,37 @@
 <?php
-  class Reader {
-    // DB Stuff
-    private $conn;
-    private $table = 'LECTEUR';
 
-    // Properties
-    public $id;
-    public $name;
-    public $created_at;
+class Reader {
+	// DB Stuff
+	private $conn;
+	private $table = 'LECTEUR';
 
-    // Constructor with DB
-    public function __construct($db) {
-      $this->conn = $db;
-    }
+	// Properties
+	public $id;
+	public $name;
+	public $created_at;
 
-    // Get Single Reader
-  public function read_single(){
-    // Create query
-    $query = 'SELECT TOP 1 *
-        FROM
-          ' . $this->table . '
-      WHERE LEC_ID = ?';
+	// Constructor with DB
+	public function __construct( $db ) {
+		$this->conn = $db;
+	}
 
-      //Prepare statement
-      $stmt = $this->conn->prepare($query);
+	// Get Single Reader
+	public function read_single() {
+		// Create query
+		$query = 'SELECT  *  FROM  ' . $this->table . '
+      WHERE LEC_ID = ? limit 0,1';
 
-      // Bind ID
-      $stmt->bindParam(1, $this->id);
+		//Prepare statement
+		$stmt = $this->conn->prepare( $query );
 
-      // Execute query
-      $stmt->execute();
+		// Bind ID
+		$stmt->bindParam( 1, $this->id );
 
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+		// Execute query
+		$stmt->execute();
 
-      // set properties
-      $this->id = $row['LEC_ID'];
-      $this->name = $row['LEC_NOM'];
-  }
+		return $stmt;
+	}
 
 
-  }
+}

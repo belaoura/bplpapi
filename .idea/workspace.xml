@@ -4,12 +4,11 @@
     <list default="true" id="d4cd1aa1-7cdd-4698-a3ea-74e889b4eab0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajaxCall.html" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxCall.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajaxCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxCall.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read_single.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/reader/read.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/reader/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/reader/read_single.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Book.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Reader.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Reader.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,12 +22,29 @@
       <executable />
     </execution>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Q5eVZ6X67QlpbB8qa3xSrVenv2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
@@ -45,6 +61,27 @@
       </list>
     </option>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.15207878" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@14403961" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@14403961" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@512f80c6" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -57,8 +94,16 @@
       <updated>1567064908286</updated>
       <workItem from="1567064910104" duration="8386000" />
       <workItem from="1567097384730" duration="936000" />
-      <workItem from="1567098413102" duration="6957000" />
+      <workItem from="1567098413102" duration="22264000" />
     </task>
+    <task id="LOCAL-00001" summary="added array of library info and other modificatins">
+      <created>1567148551304</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567148551304</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,5 +121,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+    <MESSAGE value="added array of library info and other modificatins" />
+    <option name="LAST_COMMIT_MESSAGE" value="added array of library info and other modificatins" />
   </component>
 </project>

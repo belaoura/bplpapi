@@ -1,14 +1,19 @@
-# PHP REST API For Library Network
+# SIMPLE PHP REST API For Library Network
 <img src="https://img.shields.io/badge/JSON-MARC21-orange?style=flat&logo=dev.to" alt="Marc21-Jason"> <img src="https://img.shields.io/badge/RESTfull-API-red?style=flat&logo=json" alt="RESTfull-API"> <img src="https://img.shields.io/badge/PHP-PDO-blue?style=flat&logo=php" alt="Php Pdo"> <img src="https://img.shields.io/github/license/mashape/apistatus.svg?style=flat" alt="License MIT"> <img src="https://img.shields.io/badge/VS-Code-blueviolet?style=flat&logo=visual-studio-code" alt="visual studio code">
 
 > This is a simple PHP REST API For library network .
 
 ## Quick Start
+###  Requirements
+* PHP >= 7.2
+* JSON PHP Extension
+* PDO PHP Extension
+* SQL SERVER PHP Extension
+* XML PHP Extension
 
- change the params in the config/Database.php file to your own
- Syngeb database Server 
  ### Usage
- 
+  change the params in the config/Database.php file to your own
+  Syngeb database Server 
  ```php
 <?php 
   // DB Params
@@ -44,7 +49,5 @@ Belaoura Abdelouahab
 
 ### Version
 1.0.0
-### req
 ### License
-
 This project is licensed under the MIT License

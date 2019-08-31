@@ -17,7 +17,7 @@
   $result = $book->read();
 
   // Get row count
-  $num = $result->fetchColumn();
+  $num = $result->rowCount();
 
   // Check if any books
   if($num > 0) {
@@ -25,15 +25,14 @@
     $books_arr = array();
     // $books_arr['data'] = array();
 	  $jasoninfo = array(
-		  "bplpName" => "Bplp ADrar",
-		  "bplpCode" => "0101",
-		  "type" => "marc-json",
-		  "ApiVersion" => "1.0.0"
+		  'bplpName'   => 'Bplp ADrar',
+		  'bplpCode'   => '0101',
+		  'type'       => 'marc-json',
+		  'ApiVersion' => '1.0.0'
 	  );
 	  array_push($books_arr, $jasoninfo);
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
-
 
         /** @var string $DOC_ID */
         /** @var string $COT_NOTICE */
@@ -51,13 +50,22 @@
         /** @var string $DOC_NBR_UNITE */
         /** @var string $DOC_ILLUSTRATION */
         /** @var string $DOC_FORMAT */
+	    /** @var string $DOC_NUM */
+	    /** @var string $DOC_ISSN */
         $book_item = array(
-	        "leader" => "leader string",
-	        "fields" => [
-		        '101'=>$LAN_ID,
-		        '010' => $DOC_ID,
+	        'leader' => sprintf('%06d', $DOC_ID),
+	        'fields' => [
+	        	// n? notice
+				'001'=> sprintf('%06d', $DOC_ID),
+				//ISBN
+				'101'=> [ "$" ."a " => $DOC_ISBN],
+				// ISSN
+				'011'=> ["$" ."a "=> $DOC_ISSN],
+				// Autre num?ro
+				'017'=> [ "$" ."a " => $DOC_NUM],
+		        '111'=>$LAN_ID,
 		        'Cot_notice'=>$COT_NOTICE,
-		        '200' => $DOC_TITRE_PROPRE,
+		        ['200' => $DOC_TITRE_PROPRE,],
 		        'body' => $DOC_TITRE_COMPLEMENT,
 		        'author' => $DOC_TITRE_PARALLELE,
 		        'category_id' => $DOC_TITRE_ENSEMBLE,
@@ -71,7 +79,6 @@
 		        'DOC_FORMAT'=>$DOC_FORMAT,
 		        '606'=>$DOC_KEYWORDS
 	        ]
-
       );
 
       // Push to "data"
