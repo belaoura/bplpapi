@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d4cd1aa1-7cdd-4698-a3ea-74e889b4eab0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/book/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/book/read_single.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/reader/read_single.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/reader/read_single.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Book.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Reader.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Reader.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +91,8 @@
       <workItem from="1567064910104" duration="8386000" />
       <workItem from="1567097384730" duration="936000" />
       <workItem from="1567098413102" duration="22264000" />
+      <workItem from="1567228116066" duration="467000" />
+      <workItem from="1567228661548" duration="3132000" />
     </task>
     <task id="LOCAL-00001" summary="added array of library info and other modificatins">
       <created>1567148551304</created>
@@ -103,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567148551304</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added single reader api">
+      <created>1567228205737</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1567228205737</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
     <MESSAGE value="added array of library info and other modificatins" />
-    <option name="LAST_COMMIT_MESSAGE" value="added array of library info and other modificatins" />
+    <MESSAGE value="added single reader api" />
+    <option name="LAST_COMMIT_MESSAGE" value="added single reader api" />
   </component>
 </project>

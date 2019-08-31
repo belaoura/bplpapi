@@ -17,8 +17,7 @@ $book = new book( $db );
 $book->id = isset( $_GET['id'] ) ? $_GET['id'] : die();
 
 // Get book
-$stmt = $book->read_single();
-$row  = $stmt->fetch( PDO::FETCH_ASSOC );
+$row  = $book->read_single();
 extract( $row );
 // Create array
 
@@ -69,6 +68,10 @@ $book_item = array(
 	]
 );
 
+// prepare Objects
+$row['mats'] = (object)explode(',',$row['mats']);
+$row['authors'] =(object) explode(',',$row['authors']);
+$row['DOC_KEYWORDS'] = array_filter(explode('/',$row['DOC_KEYWORDS']));
+$row['EDT_KEYWORDS'] = array_filter(explode('/',$row['EDT_KEYWORDS']));
 // Make JSON
-
 print_r( json_encode( array_filter( $row ) ) );

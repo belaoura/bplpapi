@@ -24,17 +24,19 @@
       // Create query SQL SERVER
       //$query = 'SELECT TOP 10 *  FROM '. $this->table . ' ';
 	  // Create query Mysql
-	  $query = 'SELECT  *  FROM '. $this->table . '
-	    JOIN  editeur ON editeur.EDT_ID =notice.EDT_ID
-		 JOIN type_document ON type_document.TYP_ID = notice.TYP_ID
-		 JOIN langue ON langue.LAN_ID = notice.LAN_ID
-		 JOIN statut_notice ON statut_notice.STA_ID = notice.STA_ID
-		 JOIN periodicite ON periodicite.PER_ID = notice.PER_ID
-		LEFT JOIN notice_auteur ON notice.DOC_ID = notice_auteur.DOC_ID
+	  $query = 'SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors
+		FROM notice n
+	    LEFT JOIN  editeur ON editeur.EDT_ID =n.EDT_ID
+		LEFT JOIN type_document ON type_document.TYP_ID = n.TYP_ID
+		LEFT JOIN langue ON langue.LAN_ID = n.LAN_ID
+		LEFT JOIN statut_notice ON statut_notice.STA_ID = n.STA_ID
+		LEFT JOIN periodicite ON periodicite.PER_ID = n.PER_ID
+		LEFT JOIN notice_auteur ON n.DOC_ID = notice_auteur.DOC_ID
 		LEFT JOIN vedette vauth ON notice_auteur.VED_ID = vauth.VED_ID
-		LEFT JOIN notice_matiere ON notice.DOC_ID = notice_matiere.DOC_ID
+		LEFT JOIN notice_matiere ON n.DOC_ID = notice_matiere.DOC_ID
 		LEFT JOIN vedette vmath ON notice_matiere.VED_ID = vmath.VED_ID
-	   LIMIT 10 ';
+		GROUP BY n.DOC_ID
+		LIMIT 10 ';
       
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -49,12 +51,18 @@
     // Get Single Post
     public function read_single() {
           // Create query
-          $query = 'SELECT  *  FROM  NOTICE
-                    JOIN  editeur ON editeur.EDT_ID =NOTICE.EDT_ID
-					 JOIN type_document ON type_document.TYP_ID = NOTICE.TYP_ID
-					 JOIN langue ON langue.LAN_ID = NOTICE.LAN_ID
-					 JOIN statut_notice ON statut_notice.STA_ID = NOTICE.STA_ID
-	                 WHERE    NOTICE.DOC_ID = ?    LIMIT 0,1';
+          $query = 'SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors
+		FROM notice n
+	    LEFT JOIN  editeur ON editeur.EDT_ID =n.EDT_ID
+		LEFT JOIN type_document ON type_document.TYP_ID = n.TYP_ID
+		LEFT JOIN langue ON langue.LAN_ID = n.LAN_ID
+		LEFT JOIN statut_notice ON statut_notice.STA_ID = n.STA_ID
+		LEFT JOIN periodicite ON periodicite.PER_ID = n.PER_ID
+		LEFT JOIN notice_auteur ON n.DOC_ID = notice_auteur.DOC_ID
+		LEFT JOIN vedette vauth ON notice_auteur.VED_ID = vauth.VED_ID
+		LEFT JOIN notice_matiere ON n.DOC_ID = notice_matiere.DOC_ID
+		LEFT JOIN vedette vmath ON notice_matiere.VED_ID = vmath.VED_ID
+		WHERE   n.DOC_ID = ?    LIMIT 0,1';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -64,7 +72,8 @@
 
           // Execute query
           $stmt->execute();
-	    return $stmt;
+	     $row = $stmt->fetch( PDO::FETCH_ASSOC );
+	    return $row;
     }
 
     

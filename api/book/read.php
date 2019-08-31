@@ -30,6 +30,7 @@
 		  'type'       => 'marc-json',
 		  'ApiVersion' => '1.0.0'
 	  );
+
 	  array_push($books_arr, $jasoninfo);
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
@@ -82,7 +83,8 @@
       );
 
       // Push to "data"
-      array_push($books_arr, $book_item);
+      //array_push($books_arr, $book_item);
+      array_push($books_arr, array_filter( $row ));
       // array_push($books_arr['data'], $book_item);
     }
 
