@@ -39,6 +39,11 @@ extract( $row );
 /** @var string $DOC_FORMAT */
 /** @var string $DOC_NUM */
 /** @var string $DOC_ISSN */
+// prepare Objects
+$row['mats'] = (object)explode(',',$row['mats']);
+$row['authors'] =(object) explode(',',$row['authors']);
+$row['DOC_KEYWORDS'] = array_filter(explode('/',$row['DOC_KEYWORDS']));
+$row['EDT_KEYWORDS'] = array_filter(explode('/',$row['EDT_KEYWORDS']));
 $book_item = array(
 	'leader' => sprintf( '%06d', $DOC_ID ),
 	'fields' => [
@@ -68,10 +73,6 @@ $book_item = array(
 	]
 );
 
-// prepare Objects
-$row['mats'] = (object)explode(',',$row['mats']);
-$row['authors'] =(object) explode(',',$row['authors']);
-$row['DOC_KEYWORDS'] = array_filter(explode('/',$row['DOC_KEYWORDS']));
-$row['EDT_KEYWORDS'] = array_filter(explode('/',$row['EDT_KEYWORDS']));
+
 // Make JSON
 print_r( json_encode( array_filter( $row ) ) );

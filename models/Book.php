@@ -24,7 +24,9 @@
       // Create query SQL SERVER
       //$query = 'SELECT TOP 10 *  FROM '. $this->table . ' ';
 	  // Create query Mysql
-	  $query = 'SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors
+
+	  $query = '
+SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors
 		FROM notice n
 	    LEFT JOIN  editeur ON editeur.EDT_ID =n.EDT_ID
 		LEFT JOIN type_document ON type_document.TYP_ID = n.TYP_ID
