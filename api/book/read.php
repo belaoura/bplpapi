@@ -1,103 +1,125 @@
-<?php 
-  // Headers
-  header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
+<?php
+// Headers
+header( 'Access-Control-Allow-Origin: *' );
+header( 'Content-Type: application/json' );
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Book.php';
+include_once '../../config/Database.php';
+include_once '../../models/Book.php';
 
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
+// Instantiate DB & connect
+$database = new Database();
+$db       = $database->connect();
 
-  // Instantiate Book informations object
-  $book = new Book($db);
+// Instantiate Book informations object
+$book = new Book( $db );
 
-  // Book informations query
-  $result = $book->read();
+// Book informations query
+$result = $book->read();
 
-  // Get row count
-  $num = $result->rowCount();
+// Get row count
+$num = $result->rowCount();
 
-  // Check if any books
-  if($num > 0) {
-    // book array
-    $books_arr = array();
-    // $books_arr['data'] = array();
-	  $jasoninfo = array(
-		  'bplpName'   => 'Bplp ADrar',
-		  'bplpCode'   => '0101',
-		  'type'       => 'marc-json',
-		  'ApiVersion' => '1.0.0'
-	  );
+// Check if any books
+if ( $num > 0 ) {
+	// book array
 
-	  array_push($books_arr, $jasoninfo);
-    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      extract($row);
+	$books_arr = array();
+	$books_api = array();
+	// $books_arr['data'] = array();
 
-        /** @var string $doc_id */
-        /** @var string $cot_notice */
-        /** @var string $doc_keywords */
-        /** @var string $doc_titre_complement */
-        /** @var string $doc_titre_propre */
-        /** @var array $doc_titre_parallele */
-        /** @var string $doc_titre_ensemble */
-        /** @var string $doc_annee */
-        /** @var string $doc_isbn */
-        /** @var string $lan_id */
-        /** @var string $pay_id */
-        /** @var string $doc_nbr_exemplaire */
-        /** @var string $doc_lieu_edition */
-        /** @var string $doc_nbr_unite */
-        /** @var string $doc_illustration */
-        /** @var string $doc_format */
-	    /** @var string $doc_num */
-	    /** @var string $doc_issn */
-        $row['mats'] = (object)explode(',',$row['mats']);
-        $row['authors'] =(object) explode(',',$row['authors']);
-        $row['edt_keywords'] = array_filter(explode('/',$row['edt_keywords']));
-        $row['doc_keywords'] = array_filter(explode('/',$row['doc_keywords']));
-        $book_item = array(
-	        'leader' => sprintf('%06d', $doc_id),
-	        'fields' => [
-				['001'=> sprintf('%06d', $doc_id)],
-				['101'=> [ "$" ."a " => $doc_isbn]],
-				['011'=> ["$" ."a "=> $doc_issn]],
-				['017'=> [ "$" ."a " => $doc_num]],
-		        ['111'=>$lan_id],
-                ['cot_notice'=>$cot_notice],
-                ['200' => $doc_titre_propre],
-                ['body' => $doc_titre_complement],
-		        ['author' => $doc_titre_parallele],
-		        ['category_id' => $doc_titre_ensemble],
-		        ['year' => $doc_annee],
-		        ['isbn' => $doc_isbn],
-		        ['801'=> $pay_id],
-		        ['999' => $doc_nbr_exemplaire],
-		        ['doc_lieu_edition'=> $doc_lieu_edition],
-		        ['doc_nbr_unite'=>$doc_nbr_unite],
-		        ['doc_illustration'=>$doc_illustration],
-		        ['doc_format'=>$doc_format],
-                ['keyedt'=>$row['edt_keywords']],
-                ['docedt'=>$row['doc_keywords']],
-                ['606'=>$row['mats'] ],
-                ['703'=>$row['authors']]
-	        ]
-      );
+	while ( $row = $result->fetch( PDO::FETCH_ASSOC ) ) {
+		//var_dump($row);
+		extract( $row );
 
-      // Push to "data"
-      array_push($books_arr, array_filter($book_item));
+		/** @var string $DOC_ID */
+		/** @var string $COT_NOTICE */
+		/** @var string $DOC_KEYWORDS */
+		/** @var string $DOC_TITRE_COMPLEMENT */
+		/** @var string $DOC_TITRE_PROPRE */
+		/** @var array $DOC_TITRE_PARALLELE */
+		/** @var string $DOC_TITRE_ENSEMBLE */
+		/** @var string $DOC_ANNEE */
+		/** @var string $DOC_ISBN */
+		/** @var string $LAN_ID */
+		/** @var string $PAY_ID */
+		/** @var string $DOC_NBR_EXEMPLAIRE */
+		/** @var string $DOC_LIEU_EDITION */
+		/** @var string $DOC_NBR_UNITE */
+		/** @var string $DOC_ILLUSTRATION */
+		/** @var string $DOC_FORMAT */
+		/** @var string $DOC_NUM */
+		/** @var string $DOC_ISSN */
+		/** @var string $DOC_AGENCE */
+		/** @var string $EDT_NOM_AR */
+		/** @var string $VED_NOM */
+		/** @var string $IND_ID */
+		$row['mats']         = (object) explode( ',', $row['mats'] );
+		$row['authors']      = (object) explode( ',', $row['authors'] );
+		$row['examplaires']  = (object) explode( ',', $row['examplaires'] );
+		$row['EDT_KEYWORDS'] = array_filter( explode( '/', $row['EDT_KEYWORDS'] ) );
+		$row['DOC_KEYWORDS'] = array_filter( explode( '/', $row['DOC_KEYWORDS'] ) );
+		$book_item = array(
+			'leader' => sprintf( '%06d', $DOC_ID ),
+			'fields' => [
+				[ '001' => sprintf( '%06d', $DOC_ID ) ],
+				[ '010' => [ "$" . "a" => $DOC_ISBN ] ],
+				[ '011' => [ "$" . "a" => $DOC_ISSN ] ],
+				[ '017' => [ "$" . "a" => $DOC_NUM ] ],
+				[ '111' => [ "$" . "a" => $LAN_ID ] ],
+				[ '200' => [ "$" . "a" => $DOC_TITRE_PROPRE ] ],
+				[
+					'210' => [
+						'subfields' => [
+							"$" . "a" => $DOC_LIEU_EDITION,
+							"$" . "c" => $EDT_NOM_AR,
+							"$" . "d" => $DOC_ANNEE,
+						],
+						'ind1'      => '1',
+						'ind2'      => ''
+					]
+				],
+				[ '225' => [ "$" . "a" => $DOC_TITRE_ENSEMBLE ] ],
+				[
+					'215' => [
+						"$" . "a" => $DOC_NBR_UNITE,
+						"$" . "d" => $DOC_ILLUSTRATION,
+						"$" . "c" => $DOC_FORMAT
+					]
+				],
+				[ '606' => $row['mats'] ],
+				[ '701' => [ "$" . "a" => $VED_NOM ] ],
+				[ '703' => $row['authors'] ],
+				[
+					'801' => [
+						"$" . "a" => $PAY_ID,
+						"$" . "b" => $DOC_AGENCE,
+					]
+				],
+				[ '901' => $IND_ID ],
+				[ '995' => $row['examplaires'] ],
+				[ '999' => $DOC_NBR_EXEMPLAIRE ],
+			]
+		);
 
-     // array_push($books_arr, array_filter( $row ));
-      // array_push($books_arr['data'], $book_item);
-    }
+		// Push to "data"
+		array_push( $books_arr, array_filter( $book_item ) );
 
-    // Turn to JSON & output
-    echo json_encode((object) $books_arr);
+		// array_push($books_arr, array_filter( $row ));
+		// array_push($books_arr['data'], $book_item);
+	}
+	// Turn to JSON & output
+	$books_api = array(
+		'bplpName'   => 'Bplp ADrar',
+		'bplpCode'   => '0101',
+		'type'       => 'unimarc-json',
+		'ApiVersion' => '1.0.0',
+		'books'      => $books_arr
+	);
+	echo json_encode( (object) $books_api );
 
-  } else {
-    // No books
-    echo json_encode(
-      array('message' => 'No books Found')
-    );
-  }
+} else {
+	// No books
+	echo json_encode(
+		array( 'message' => 'No books Found' )
+	);
+}

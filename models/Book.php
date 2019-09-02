@@ -26,7 +26,10 @@
 	  // Create query Mysql
 
 	  $query = '
-SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors
+		SELECT  *,
+		GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,
+		GROUP_CONCAT( DISTINCT vauth.VED_NOM) AS authors,
+		GROUP_CONCAT( DISTINCT notice_exemplaire.EXP_COTE) AS examplaires
 		FROM notice n
 	    LEFT JOIN  editeur ON editeur.EDT_ID =n.EDT_ID
 		LEFT JOIN type_document ON type_document.TYP_ID = n.TYP_ID
@@ -37,8 +40,9 @@ SELECT  *,GROUP_CONCAT(DISTINCT  vmath.VED_NOM) AS mats,GROUP_CONCAT( DISTINCT v
 		LEFT JOIN vedette vauth ON notice_auteur.VED_ID = vauth.VED_ID
 		LEFT JOIN notice_matiere ON n.DOC_ID = notice_matiere.DOC_ID
 		LEFT JOIN vedette vmath ON notice_matiere.VED_ID = vmath.VED_ID
+		LEFT JOIN notice_exemplaire ON n.DOC_ID = notice_exemplaire.DOC_ID
 		GROUP BY n.DOC_ID
-		LIMIT 10 ';
+		LIMIT 3 ';
       
       // Prepare statement
       $stmt = $this->conn->prepare($query);
