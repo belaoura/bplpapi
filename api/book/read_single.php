@@ -39,40 +39,52 @@ extract( $row );
 /** @var string $DOC_FORMAT */
 /** @var string $DOC_NUM */
 /** @var string $DOC_ISSN */
-// prepare Objects
 $row['mats'] = (object)explode(',',$row['mats']);
 $row['authors'] =(object) explode(',',$row['authors']);
-$row['DOC_KEYWORDS'] = array_filter(explode('/',$row['DOC_KEYWORDS']));
-$row['EDT_KEYWORDS'] = array_filter(explode('/',$row['EDT_KEYWORDS']));
+$row['edt_keywords'] = array_filter(explode('/',$row['edt_keywords']));
+$row['doc_keywords'] = array_filter(explode('/',$row['doc_keywords']));
+/** @var string $DOC_AGENCE */
+/** @var string $EDT_NOM_AR */
+/** @var string $VED_NOM */
 $book_item = array(
-	'leader' => sprintf( '%06d', $DOC_ID ),
+	'leader' => sprintf('%06d', $DOC_ID),
 	'fields' => [
-		// n? notice
-		'001'              => sprintf( '%06d', $DOC_ID ),
-		//ISBN
-		'101'              => [ "$" . "a " => $DOC_ISBN ],
-		// ISSN
-		'011'              => [ "$" . "a " => $DOC_ISSN ],
-		// Autre num?ro
-		'017'              => [ "$" . "a " => $DOC_NUM ],
-		'111'              => $LAN_ID,
-		'Cot_notice'       => $COT_NOTICE,
-		'200'              => $DOC_TITRE_PROPRE,
-		'body'             => $DOC_TITRE_COMPLEMENT,
-		'author'           => $DOC_TITRE_PARALLELE,
-		'category_id'      => $DOC_TITRE_ENSEMBLE,
-		'YEAR'             => $DOC_ANNEE,
-		'ISBN'             => $DOC_ISBN,
-		'801'              => $PAY_ID,
-		'999'              => $DOC_NBR_EXEMPLAIRE,
-		'DOC_LIEU_EDITION' => $DOC_LIEU_EDITION,
-		'DOC_NBR_UNITE'    => $DOC_NBR_UNITE,
-		'DOC_ILLUSTRATION' => $DOC_ILLUSTRATION,
-		'DOC_FORMAT'       => $DOC_FORMAT,
-		'606'              => $DOC_KEYWORDS
+		['001'=> sprintf('%06d', $DOC_ID)],
+		['010'=> [ "$" ."a" => $DOC_ISBN]],
+		['011'=> ["$" ."a"=> $DOC_ISSN]],
+		['017'=> [ "$" ."a" => $DOC_NUM]],
+		['111'=>[ "$" ."a" =>$LAN_ID]],
+		['200' => [ "$" ."a" =>$DOC_TITRE_PROPRE]],
+		['210'=> [
+			"$" ."a" => $DOC_LIEU_EDITION,
+			"$" ."c" => $EDT_NOM_AR,
+			"$" ."d" => $DOC_ANNEE,
+		]],
+		['225' => [ "$" ."a" =>$DOC_TITRE_ENSEMBLE]],
+		['215'=>[
+			"$" ."a" => $DOC_NBR_UNITE,
+			"$" ."d" => $DOC_ILLUSTRATION,
+			"$" ."c" => $DOC_FORMAT
+		]],
+		['606'=>$row['mats']],
+		['701'=>[ "$" ."a" =>$VED_NOM]],
+		['703'=>$row['authors']],
+		['801'=> [
+			"$" ."a" => $PAY_ID,
+			"$" ."b" => $DOC_AGENCE,
+		]],
+		['999' => $DOC_NBR_EXEMPLAIRE],
 	]
 );
+// Turn to JSON & output
+$books_api = array(
+	'bplpName'   => 'Bplp ADrar',
+	'bplpCode'   => '0101',
+	'type'       => 'marc-json',
+	'ApiVersion' => '1.0.0',
+	'book'=>$book_item
+);
+print_r(json_encode((object) $books_api));
 
 
-// Make JSON
-print_r( json_encode( array_filter( $row ) ) );
+//print_r( json_encode( array_filter( $row ) ) );
