@@ -54,8 +54,9 @@ if ( $num > 0 ) {
 		/** @var string $VED_NOM */
 		/** @var string $IND_ID */
 		$row['mats']         = (object) explode( ',', $row['mats'] );
-		$row['authors']      = (object) explode( ',', $row['authors'] );
-		$row['examplaires']  = (object) explode( ',', $row['examplaires'] );
+		$row['auths']      = (object) explode( ',', $row['auths'] );
+		$row['examp_cote']  = (object) explode( ',', $row['examp_cote'] );
+		$row['exmp_location']  = (object) explode( ',', $row['exmp_location'] );
 		$row['EDT_KEYWORDS'] = array_filter( explode( '/', $row['EDT_KEYWORDS'] ) );
 		$row['DOC_KEYWORDS'] = array_filter( explode( '/', $row['DOC_KEYWORDS'] ) );
 		$book_item = array(
@@ -91,8 +92,7 @@ if ( $num > 0 ) {
 					]
 				],
 				[ '606' => $row['mats'] ],
-				[ '701' => [ "$" . "a" => $VED_NOM ] ],
-				[ '703' => $row['authors'] ],
+				[ '703' => $row['auths'] ],
 				[
 					'801' => [
 						"$" . "a" => $PAY_ID,
@@ -100,7 +100,12 @@ if ( $num > 0 ) {
 					]
 				],
 				[ '901' => $IND_ID ],
-				[ '995' => $row['examplaires'] ],
+				[ '995' => [
+				    '$'.'k' =>$row['examp_cote'],
+				    '$'.'i' =>$row['exmp_location'],
+                    ]
+                ],
+
 				[ '999' => $DOC_NBR_EXEMPLAIRE ],
 			]
 		);

@@ -1,34 +1,30 @@
 <?php
 
-class Book {
-	// DB stuff
-	private $conn;
-	private $table = 'NOTICE';
+class Book
+{
+    // DB stuff
+    private $conn;
+    private $table = 'NOTICE';
 
-	// Post Properties
-	public $DOC_ID;
-	public $category_id;
-	public $category_name;
-	public $title;
-	public $body;
-	public $author;
-	//public $isbn;
-	public $created_at;
+    // Constructor with DB
+    public function __construct($db)
+    {
+        $this->conn = $db;
+    }
 
-	// Constructor with DB
-	public function __construct( $db ) {
-		$this->conn = $db;
-	}
+    // Get Books
+    public function read()
+    {
+        // Create query SQL SERVER
+        //$query = 'SELECT TOP 10 *  FROM '. $this->table . ' ';
+        // Create query Mysql
 
-	// Get Posts
-	public function read() {
-		// Create query SQL SERVER
-		//$query = 'SELECT TOP 10 *  FROM '. $this->table . ' ';
-		// Create query Mysql
-
-		$query = 'SELECT   
+        $query = 'SELECT   
 	n.DOC_ID, 
-   type_document.TYP_LIBELLE_AR, 
+       n.TYP_ID,
+       n.TYP_ID,
+   type_document.TYP_LIBELLE_AR,
+       n.IND_ID,
 	indication.IND_LIBELLE_AR, 
    n.LAN_ID,
    langue.LAN_LIBELLE_AR, 
@@ -45,7 +41,8 @@ class Book {
    periodicite.PER_LIBELLE_AR, 
    n.DIP_ID, 
 	specialite.SPE_LIBELLE_AR,
-   n.COL_ID, 
+   n.COL_ID,
+   n.DOC_NUM, 
    n.COL_NUMERO, 
    n.COT_NOTICE, 
    n.SCL_ID, 
@@ -92,20 +89,20 @@ FROM notice n
 		GROUP BY n.DOC_ID
 		LIMIT 10  ';
 
-		// Prepare statement
-		$stmt = $this->conn->prepare( $query );
-		//  var_dump($stmt);
-		// Execute query
-		$stmt->execute();
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        // Execute query
+        $stmt->execute();
 
 
-		return $stmt;
-	}
+        return $stmt;
+    }
 
-	// Get Single Post
-	public function read_single() {
-		// Create query
-		$query = 'SELECT   
+    // Get Single Book
+    public function read_single()
+    {
+        // Create query
+        $query = 'SELECT   
 	n.DOC_ID, 
    type_document.TYP_LIBELLE_AR, 
 	indication.IND_LIBELLE_AR, 
@@ -170,18 +167,18 @@ FROM notice n
 		LEFT JOIN vedette vmath ON notice_matiere.VED_ID = vmath.VED_ID
 		WHERE   n.DOC_ID = ?    LIMIT 0,1';
 
-		// Prepare statement
-		$stmt = $this->conn->prepare( $query );
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
 
-		// Bind ID
-		$stmt->bindParam( 1, $this->id );
+        // Bind ID
+        $stmt->bindParam(1, $this->id);
 
-		// Execute query
-		$stmt->execute();
-		$row = $stmt->fetch( PDO::FETCH_ASSOC );
+        // Execute query
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		return $row;
-	}
+        return $row;
+    }
 
 
 }
