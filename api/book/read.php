@@ -66,7 +66,11 @@ if ( $num > 0 ) {
 				[ '011' => [ "$" . "a" => $DOC_ISSN ] ],
 				[ '017' => [ "$" . "a" => $DOC_NUM ] ],
 				[ '111' => [ "$" . "a" => $LAN_ID ] ],
-				[ '200' => [ "$" . "a" => $DOC_TITRE_PROPRE ] ],
+				[ '200' => [
+					"$" . "a" => $DOC_TITRE_PROPRE,
+					"$" . "d" => $DOC_TITRE_COMPLEMENT,
+					"$" . "e" => $DOC_TITRE_PARALLELE,
+				] ],
 				[
 					'210' => [
 						'subfields' => [
