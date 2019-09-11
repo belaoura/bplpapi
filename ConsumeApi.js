@@ -28,7 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         req.onload = function () {
             var json = JSON.parse(req.responseText);
-
+            document.getElementsByClassName('natcode')[0].innerHTML = "<h5><strong> الرقم الوطني :<span class='badge badge-pill badge-success'>" + json.NationalCode + "</span> </strong></h5>"
+            document.getElementsByClassName('ver')[0].innerHTML = "<strong><span class='badge badge-pill badge-danger'>" + json.ApiVersion + "</span> </strong>"
+            document.getElementsByClassName('type')[0].innerHTML = "<strong><span class='badge badge-pill badge-warning'>" + json.Type + "</span> </strong>"
             var books = json.books;
             console.log(books[0]["fields"]);
             console.log(books[0]["fields"][0]);
@@ -43,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 var book = books[i];
                 html += "<div class='card col-md-12 mb-2' >";
                 html += "<div class='card-body'>";
-                html += "<h4><strong> <span class='badge badge-info'>ISBN :</span> " +books[i]["fields"][0]["010"].subfields["0"].$a+ "</strong></h4><br>";
-                html += "<div class='row'> <div class='col'>";
+                html += "<h4><strong> <span class='badge badge-info'>ISBN :</span> " + books[i]["fields"][0]["010"].subfields["0"].$a + "</strong></h4><br>";
+                html += "<div class='row'><div class='col'>";
                 html += " <input class='form-control form-control-sm' type='text' value='" + books[i]["fields"][4]["200"].subfields["0"].$a + "'> <br>";
                 html += " <input class='form-control form-control-sm'  type='text' value='" + books[i]["fields"][5]["210"].subfields["1"].$c + "'> <br>";
                 html += " <input class='form-control form-control-sm'  type='text' value='" + books[i]["fields"][5]["210"].subfields["0"].$a + "'> <br>";

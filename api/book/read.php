@@ -62,7 +62,7 @@ if ($num > 0) {
         $row['DOC_KEYWORDS'] = array_filter(explode('/', $row['DOC_KEYWORDS']));
         $book_item = array(
             'leader' => '',
-            'fields' => [
+            'fields' =>[
                 ['010' => [
                     'subfields' => [
                         ["$" . "a" => $DOC_ISBN]
