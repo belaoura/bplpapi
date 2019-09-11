@@ -1,47 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PHP REST API For Library Network</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
     <script src="ConsumeApi.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <style>
-        body {
-          text-align: center;
-          font-family: "Helvetica", sans-serif;
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Tajawal', sans-serif;
         }
-        h1 {
-          font-size: 2em;
-          font-weight: bold;
-        }
-        .box {
-          border-radius: 5px;
-          background-color: #eee;
-          padding: 20px 5px;
-        }
-        button {
-          color: white;
-          background-color: #4791d0;
-          border-radius: 5px;
-          border: 1px solid #4791d0;
-          padding: 5px 10px 8px 10px;
-        }
-        button:hover {
-          background-color: #0F5897;
-          border: 1px solid #0F5897;
-        }
-      </style>
+    </style>
+
 </head>
 <body>
 
-<div style="float:left; width:50%;">
-  <h1>Bplp ADRAR API book Finder</h1>
-  <p class="message box"> The message will go here </p>
-  <p><button id="getMessage"> Get Books </button></p>
-</div> 
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading"> المكتبة الرئيسية للمطالعة العمومية أدرار</h1>
+        <p class="lead text-muted">
+            A Simple Example : how to use API in Javascript
+        </p>
+        <p>
+            <button class="btn btn-primary" id="getMessage"> Get Books</button>
+        </p>
+    </div>
+</section>
+<section class="text-center">
+    <div class="container">
+        <div class="row col-md-12">
+            <div class="message col-12">
+                <div class="alert alert-primary" role="alert">
+                    The List of Books will go here
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
